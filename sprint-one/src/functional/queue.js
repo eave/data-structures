@@ -4,26 +4,27 @@ var makeQueue = function(){
   // Use an object with numeric keys to store values
   var storage = {};
   var size = 0;
+  var front = 1;
+  var back = 0;
 
   // Implement the methods below
 
   someInstance.enqueue = function(value){
-    if (size === 0) {
-      storage[size] = value;
-      size++;
-    } else {
-      for (var i = size - 1; i > -1; i--) {
-        storage[i+1] = storage[i];
-      }
-      storage[0] = value;
-      size++; 
-    };
+    back++;
+    size++;
+    storage[back] = value;
+    return true;
   };
 
   someInstance.dequeue = function(){
-    size && size--; //size will pass if > 0, and will then evaluate the second half of the statement
-    var result = storage[size];
-    delete storage[size];
+    if (size === 0) {
+      console.log("Cannot dequeue an empty queue.");
+      return false;
+    }
+    var result = storage[front];
+    delete storage[front];
+    front++;
+    size--;
     return result;
   };
 
