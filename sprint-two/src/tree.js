@@ -9,7 +9,7 @@ var makeTree = function(value){
   var newTree = {};
   newTree.value = value;
   newTree.children = [];
-  _.extend(newTree, treeMethods); // added, may not be necessary; should arg1 be makeTree?
+  _.extend(newTree, treeMethods);
   return newTree;
 };
 
@@ -20,9 +20,20 @@ treeMethods.addChild = function(value){
 };
 
 treeMethods.contains = function(target){
-	for (var i = 0; i < this.children.length; i++) {
+  var result = false;
 
-	}
+  var doesContain = function(node, target) {
+    if (node.value === target) {
+      result = true;
+    } else if (node.children.length > 0) {
+      for (var i = 0; i < node.children.length; i++) {
+        doesContain(node.children[i], target);
+      }
+    }
+  };
+
+  doesContain(this, target);
+  return result;
 };
 
 
