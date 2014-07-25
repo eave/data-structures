@@ -17,8 +17,28 @@
 
 
 var makeBinarySearchTree = function(value){
+  return new BST(value);
 };
 
+var BST = function(value) {
+  this.value = value;
+  this.left; // undefined
+  this.right; // undefined
+}
+
+BST.prototype.insert = function(valueToInsert) {
+  if (valueToInsert < this.value) { // heading left
+    (this.left) ? this.left.insert(valueToInsert)
+                : this.left = makeBinarySearchTree(valueToInsert);
+  } else { // heading right
+    (this.right) ? this.right.insert(valueToInsert)
+                 : this.right = makeBinarySearchTree(valueToInsert);
+} }; // end else (heading right)
+
+
+BST.prototype.contains = function(target) {};
+
+BST.prototype.depthFirstLog = function(fn) {};
 
 /*
  * Complexity: What is the time complexity of the above functions?
