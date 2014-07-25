@@ -1,10 +1,3 @@
-// a tree is a widely used abstract data type (ADT) or data
-// structure implementing this ADT that simulates a hierarchical
-// tree structure, with a root value and subtrees of children,
-// represented as a set of linked nodes.
-
-
-
 var makeTree = function(value){
   var newTree = {};
   newTree.value = value;
@@ -13,7 +6,7 @@ var makeTree = function(value){
   return newTree;
 };
 
-var treeMethods = {}; // use this for these
+var treeMethods = {};
 
 treeMethods.addChild = function(value){
 	this.children.push(makeTree(value));
@@ -21,18 +14,14 @@ treeMethods.addChild = function(value){
 
 treeMethods.contains = function(target){
   var result = false;
+  if (this.value === target) {
+    return true;
+  }
 
-  var doesContain = function(node, target) {
-    if (node.value === target) {
-      result = true;
-    } else if (node.children.length > 0) {
-      for (var i = 0; i < node.children.length; i++) {
-        doesContain(node.children[i], target);
-      }
-    }
-  };
+  for (var i = 0; i < this.children.length && result !== true; i++) {
+    result = this.children[i].contains(target);
+  }
 
-  doesContain(this, target);
   return result;
 };
 
