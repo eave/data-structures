@@ -8,18 +8,21 @@
 var makeTree = function(value){
   var newTree = {};
   newTree.value = value;
-  newTree.children = undefined;
+  newTree.children = [];
+  _.extend(newTree, treeMethods); // added, may not be necessary; should arg1 be makeTree?
   return newTree;
 };
 
-var treeMethods = {};
+var treeMethods = {}; // use this for these
 
 treeMethods.addChild = function(value){
-
+	this.children.push(makeTree(value));
 };
 
 treeMethods.contains = function(target){
+	for (var i = 0; i < this.children.length; i++) {
 
+	}
 };
 
 
