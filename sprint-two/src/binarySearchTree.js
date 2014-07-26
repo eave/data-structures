@@ -58,7 +58,16 @@ BST.prototype.contains = function(target) {
   return result;
 };
 
-BST.prototype.depthFirstLog = function(fn) {};
+BST.prototype.depthFirstLog = function(fn) {
+  fn(this.value);
+  
+  if (this.left) {
+    this.left.depthFirstLog(fn);
+  }
+  if (this.right) {
+    this.right.depthFirstLog(fn);
+  }
+};
 
 /*
  * Complexity: What is the time complexity of the above functions?
