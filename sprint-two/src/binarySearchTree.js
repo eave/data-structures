@@ -36,7 +36,26 @@ BST.prototype.insert = function(valueToInsert) {
 } }; // end else (heading right)
 
 
-BST.prototype.contains = function(target) {};
+BST.prototype.contains = function(target) {
+  // result = false
+  var result = false;
+  // if target equals this.value
+  if (this.value === target) {
+    // result = true
+    result = true;
+  }
+  // else if: target < this.value && result === false && this.left
+  else if (target < this.value && result === false && (this.left)) {
+    // result = this.left.contains(target)
+    result = this.left.contains(target);
+  }
+  // else if: target > this.value && result === false && this.right
+  else if (target > this.value && result === false && (this.right)) {
+    result = this.right.contains(target);
+  }
+  // return result
+  return result;
+};
 
 BST.prototype.depthFirstLog = function(fn) {};
 
